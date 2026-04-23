@@ -1067,7 +1067,7 @@ body.main-hidden {
     </div>
     <div class="closing-script">with love</div>
     <p class="closing-text">We can't wait to celebrate these moments with you.</p>
-    <div class="closing-initials">A &nbsp;·&nbsp; S</div>
+    <div class="closing-initials">A &nbsp;<span style="color:#e8871e;font-size:1.1em;">♥</span>&nbsp; S</div>
   </div>
 </section>
 
@@ -1218,12 +1218,13 @@ seedShimmer(document.getElementById('shimmerFieldClose'), 25);
   btn.addEventListener('click', (e)=>{
     e.stopPropagation();
     userMuted = !userMuted;
-    if (!userMuted){
-      // user turned it back on; make sure it's playing
-      if (audio.paused){
-        const p = audio.play();
-        if (p && p.catch) p.catch(()=>{});
-      }
+    if (userMuted){
+      audio.pause();
+      btn.classList.add('muted');
+    } else {
+      const p = audio.play();
+      if (p && p.catch) p.catch(()=>{});
+      btn.classList.remove('muted');
     }
   });
 })();
